@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form method="POST" action="/phone" class="bg-light p-4 mb-5 rounded shadow border border-2">
+
+    <div class="mb-3">
+        <h3>Проверка номера телефона</h3>
+    </div>
+
+    <div class="mb-4">
+        <label for="" class="form-label">Номер телефона</label>
+        <input type="text" class="form-control 
+        {% if error_msg %}is-invalid{% elif submitted %}is-valid{% endif %}" name="phone" value="{{ input_numb }}"
+            required>
+
+        <div class="invalid-feedback">
+            {{ error_msg }}
+        </div>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" type="submit">Проверить</button>
+    </div>
+
+</form>
+
+{% if formated %}
+<div class="bg-light p-4 mb-5 rounded shadow border border-2">
+    <h3>Отформатированный номер телефона:</h3>
+    <h5>{{formated}}</h5>
+</div>
+{% endif %}
+
+{% endblock %}

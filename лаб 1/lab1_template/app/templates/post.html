@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="mt-5">{{ post.title }}</h1>
+    <h4 class="ms-4">{{ post.author }}</h4>
+    <hr>
+    <br><br>
+
+    <p>
+        <img class="float-start rounded shadow me-4 mb-2" style="width: 600px;"
+            src="{{ url_for('static', filename='images/' + post.image_id) }}" alt="Card image cap">
+        {{ post.text }}
+    </p>
+
+    <br>
+    <p>Опубликовано</p>
+    <h4 class="ms-4">{{ post.date }}</h4>
+
+    <hr>
+
+    <h1 class="m-3 text-center">Комментарии</h1>
+
+    <div class="card" style="max-width: 600px; margin: 30px auto;">
+        <div class="card-header bg-light pt-3 text-center">
+            <h5>Оставьте комментарий</h5>
+        </div>
+        <div class="card-body">
+        <form action="" method="" class="row g-3">
+            <div class="col-12">
+                <input type="text" name="name" id="name" class="form-control" required placeholder="Имя">
+            </div>
+
+            <div class="col-12">
+                <textarea type="text" name="text" id="text" class="form-control" required placeholder="Текст комментария"></textarea>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+
+    <!-- {{ post.comments }} -->
+
+    {% for comment in post.comments %}
+
+    <div class="d-flex m-5 p-3 border rounded bg-light">
+        <div class="flex-shrink-0">
+            <img src="{{ url_for('static', filename='images/avatar.jpg') }}" style="height: 60px;" class="rounded" alt="Sample Image">
+        </div>
+        <div class="flex-grow-1 ms-3">
+            <h5>{{ comment.author }}</h5>
+            <p>{{ comment.text }}</p>
+
+            {% if comment.replies %}
+            {% for reply in comment.replies %}
+            <!-- Nested media object -->
+            <div class="d-flex mt-4">
+                <div class="flex-shrink-0">
+                    <img src="{{ url_for('static', filename='images/avatar.jpg') }}" style="height: 60px;" class="rounded" alt="Sample Image">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                    <h6>{{ reply.author }}</h6>
+                    <p>{{ reply.text }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+    
+
+</div>
+
+{% endblock %}

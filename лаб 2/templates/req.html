@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h3>Параметры URL</h3>
+    {{ url_params }}
+    <hr>
+    <h3>Заголовки запроса</h3>
+    <p>{{ headers }}</p>
+    <hr>
+    <h3>Куки</h3>
+    <p>{{ cookies }}</p>
+
+{% endblock %}
