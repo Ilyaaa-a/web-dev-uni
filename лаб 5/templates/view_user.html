@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Данные пользователя</h1>
+
+<table class="table table-striped table-hover table-bordered align-middle">
+    <thead class="table-dark text-center">
+        <tr>
+            <th scope="col">Поле</th>
+            <th scope="col">Значение</th>
+        </tr>
+    </thead>
+
+    <tbody class="table-light">
+        <tr>
+            <th>Идентификатор</th>
+            <td>{{user.id}}</td>
+        </tr>
+        <tr>
+            <th>Логин</th>
+            <td>{{user.login}}</td>
+        </tr>
+        <tr>
+            <th>Фамилия</th>
+            <td>{{user.surname or 'Не указана'}}</td>
+        </tr>
+        <tr>
+            <th>Имя</th>
+            <td>{{user.name}}</td>
+        </tr>
+        <tr>
+            <th>Отчество</th>
+            <td>{{user.patronymic or 'Не указано'}}</td>
+        </tr>
+        <tr>
+            <th>Роль</th>
+            <td>{{user.role.name if user.role else 'Нет роли'}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Назад к списку</a>
+
+{% endblock %}

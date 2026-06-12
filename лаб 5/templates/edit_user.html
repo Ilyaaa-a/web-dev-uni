@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% from "_form_macros.html" import user_form %}
+
+{% block content %}
+
+{{ user_form(user=user, edit=True, all_roles=all_roles, form_errors=form_errors, form_data=form_data, current_user=current_user) }}
+
+{% endblock %}
